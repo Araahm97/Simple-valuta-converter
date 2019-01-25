@@ -6,5 +6,8 @@
     <color name="primary">#344955</color>
     <color name="primary2">#232F34</color>
     <color name="primary3">#4A6572</color>
+    <color name="background">#EEF1EF</color>
+    <color name="white">#FFFF</color>
     <color name="secondary">#F9AA33</color>
+
 </resources>

@@ -43,7 +43,7 @@
     <TextView
         android:id="@+id/title"
         android:gravity="center"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:textFontWeight="20"
         android:layout_width="216dp"
         android:layout_height="50dp"

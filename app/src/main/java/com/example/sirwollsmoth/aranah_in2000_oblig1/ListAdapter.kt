@@ -24,8 +24,8 @@ class ListAdapter (private val myDataset: ArrayList<Element>) : RecyclerView.Ada
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.cardView.card_view.desc.text = myDataset[position].desc
         holder.cardView.card_view.title.text = myDataset[position].title
+        holder.cardView.card_view.desc.text = myDataset[position].desc
 
     }
 
