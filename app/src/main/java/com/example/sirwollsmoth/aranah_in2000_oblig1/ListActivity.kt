@@ -9,17 +9,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.Toast
 import com.getbase.floatingactionbutton.FloatingActionButton
-import android.content.DialogInterface
-import android.graphics.drawable.Drawable
 import android.widget.EditText
-import android.view.LayoutInflater
-import android.widget.LinearLayout
-import android.text.Editable
-
-
-
-
-
 
 
 
@@ -39,9 +29,9 @@ class ListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_list)
 
 
-        elementList.add(Element("ARAN", "a fat bitch"))
-        elementList.add(Element("BO", "XD boi"))
-        elementList.add(Element("SHIT", "spends a lot of time in toilet"))
+        elementList.add(Element("Mario", "a fat plumber that eats to much mushrooms and hallucinates"))
+        elementList.add(Element("Sonic", "blue hedgehog on steroids, also known as \'sanic\'"))
+        elementList.add(Element("Link", "No, Zelda is the princess"))
 
 
         viewManager = LinearLayoutManager(this)
@@ -51,9 +41,6 @@ class ListActivity : AppCompatActivity() {
 
 
         floatingActionButton.setOnClickListener({ _ -> openDialog()})
-
-
-
 
 
         recyclerView = findViewById<RecyclerView>(R.id.my_recycler_view).apply {
@@ -80,13 +67,19 @@ class ListActivity : AppCompatActivity() {
         val descText : EditText = view.findViewById(R.id.element_desc)
 
 
-        builder.setPositiveButton("Add New") { dialog, whichButton ->
+        builder.setPositiveButton("Add New") { _, _ ->
             newElementDesc=descText.text.toString()
             newElementTitle=titleText.text.toString()
-            elementList.add(Element(newElementTitle, newElementDesc))
+
+            if(newElementDesc.isNullOrEmpty() || newElementTitle.isNullOrEmpty()){
+                Toast.makeText(this, "One or more field is empty", Toast.LENGTH_SHORT).show()
+            } else {
+                elementList.add(Element(newElementTitle, newElementDesc))
+            }
+
         }
 
-        builder.setNegativeButton("Cancel") { dialog, which -> Unit }
+        builder.setNegativeButton("Cancel") { _, _ -> Unit }
         builder.setView(view)
         builder.show()
     }

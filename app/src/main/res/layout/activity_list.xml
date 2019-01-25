@@ -27,6 +27,7 @@
         android:layout_alignParentEnd="true"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
+        app:fab_colorNormal="@color/secondary"
         app:layout_constraintBottom_toBottomOf="@+id/my_recycler_view"
         app:layout_constraintEnd_toEndOf="@+id/my_recycler_view" />
 

@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">aranah_in2000_oblig1</string>
-    <string name="elementTitle">write title here</string>
-    <string name="elementDesc">write desc here</string>
+    <string name="elementTitle">Title</string>
+    <string name="elementDesc">Description</string>
 </resources>
