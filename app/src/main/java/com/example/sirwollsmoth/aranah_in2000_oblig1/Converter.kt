@@ -31,6 +31,7 @@ class Converter : AppCompatActivity() {
         textViewTitle.text = cmTitle
 
 
+        //Add functionality to the swap button
         swapButton.setOnClickListener {
             //Hide the keyboard
             editText.onEditorAction(EditorInfo.IME_ACTION_DONE)
@@ -96,11 +97,10 @@ class Converter : AppCompatActivity() {
             }
         }
 
-
         //Add functionality to the next button
         nextButton.setOnClickListener {
-            val changePage = Intent(this, ListActivity::class.java)
-            startActivity(changePage)
+            val list = Intent(this, ListActivity::class.java)
+            startActivity(list)
         }
 
         //Add functionality to the prev button

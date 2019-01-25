@@ -9,8 +9,8 @@ import android.support.v7.widget.RecyclerView
 class ListActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
-    lateinit var viewAdapter: RecyclerView.Adapter<*>
-    lateinit var viewManager: RecyclerView.LayoutManager
+    lateinit var viewAdapter: ListAdapter
+    private lateinit var viewManager: RecyclerView.LayoutManager
 
 
 
@@ -20,12 +20,14 @@ class ListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_list)
 
         val elementList = ArrayList<Element>()
-        viewManager = LinearLayoutManager(this)
-        viewAdapter = ListAdapter(elementList)
+
 
         elementList.add(Element("ARAN", "a fat bitch"))
         elementList.add(Element("BO", "XD boi"))
         elementList.add(Element("SHIT", "spends a lot of time in toilet"))
+
+        viewManager = LinearLayoutManager(this)
+        viewAdapter = ListAdapter(elementList)
 
 
 
