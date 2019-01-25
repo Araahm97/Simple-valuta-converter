@@ -9,19 +9,23 @@ import android.support.v7.widget.RecyclerView
 class ListActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var viewAdapter: RecyclerView.Adapter<*>
-    private lateinit var viewManager: RecyclerView.LayoutManager
+    lateinit var viewAdapter: RecyclerView.Adapter<*>
+    lateinit var viewManager: RecyclerView.LayoutManager
 
-    val elementList = ArrayList<Element>()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
 
-
+        val elementList = ArrayList<Element>()
         viewManager = LinearLayoutManager(this)
-        viewAdapter = ListAdapter(myDataset)
+        viewAdapter = ListAdapter(elementList)
+
+        elementList.add(Element("ARAN", "a fat bitch"))
+        elementList.add(Element("BO", "XD boi"))
+        elementList.add(Element("SHIT", "spends a lot of time in toilet"))
 
 
 
