@@ -99,8 +99,8 @@ class Converter : AppCompatActivity() {
 
         //Add functionality to the next button
         nextButton.setOnClickListener {
-           /* val changePage = Intent(this, ListActivity::class.java)
-            startActivity(changePage)*/
+            val changePage = Intent(this, ListActivity::class.java)
+            startActivity(changePage)
         }
 
         //Add functionality to the prev button
