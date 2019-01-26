@@ -29,13 +29,13 @@ class ListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_list)
 
 
-        elementList.add(Element("Mario", "a fat plumber that eats to much mushrooms and hallucinates"))
-        elementList.add(Element("Sonic", "blue hedgehog on steroids, also known as \'sanic\'"))
-        elementList.add(Element("Link", "No, Zelda is the princess"))
+        elementList.add(Element("Mario", "a fat plumber that eats to much mushrooms and hallucinates", "https://steemitimages.com/DQmfYjF8Azi8Dcn9s5t6QMdukEL45zMoDee5uMCkuNCPSzD/tree-2597733_960_720.jpg" ))
+        elementList.add(Element("Sonic", "blue hedgehog on steroids, also known as \'sanic\'", "https://d2pptc4exyus09.cloudfront.net/puzzle/137/421/original.jpg"))
+        //elementList.add(Element("Link", "No, Zelda is the princess", "test"))
 
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = ListAdapter(elementList)
+        viewAdapter = ListAdapter(elementList, this)
 
         val floatingActionButton = findViewById<View>(R.id.floating_action_button) as FloatingActionButton
 
@@ -58,25 +58,26 @@ class ListActivity : AppCompatActivity() {
 
     }
 
-    fun openDialog() {
+    private fun openDialog() {
         val view: View = layoutInflater.inflate(R.layout.dialog, null)
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Add new Element")
 
         val titleText: EditText = view.findViewById(R.id.element_title)
         val descText : EditText = view.findViewById(R.id.element_desc)
+        val urlText: EditText = view.findViewById(R.id.element_pic)
 
 
         builder.setPositiveButton("Add New") { _, _ ->
-            newElementDesc=descText.text.toString()
-            newElementTitle=titleText.text.toString()
+            val newElementDesc=descText.text.toString()
+            val newElementTitle=titleText.text.toString()
+            val newElementURL = urlText.text.toString()
 
-            if(newElementDesc.isNullOrEmpty() || newElementTitle.isNullOrEmpty()){
+            if(newElementDesc.isNullOrEmpty() || newElementTitle.isNullOrEmpty() || newElementURL.isNullOrEmpty()){
                 Toast.makeText(this, "One or more field is empty", Toast.LENGTH_SHORT).show()
             } else {
-                elementList.add(Element(newElementTitle, newElementDesc))
+                elementList.add(Element(newElementTitle, newElementDesc,newElementURL))
             }
-
         }
 
         builder.setNegativeButton("Cancel") { _, _ -> Unit }
