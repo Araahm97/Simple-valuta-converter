@@ -15,16 +15,14 @@ class PictureActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_picture)
 
-        val imageView = findViewById(R.id.test_image) as ImageView
+        val imageView: ImageView = findViewById(R.id.test_image)
 
         Glide
                 .with(this)
                 .load("https://upload.wikimedia.org/wikipedia/commons/e/eb/Ole-Johan_Dahls_hus_20110911-11.JPG")
                 .into(imageView)
 
-
-
-        val nextButton = findViewById(R.id.next_button) as Button
+        val nextButton: Button = findViewById(R.id.next_button)
         nextButton.setOnClickListener {
                 val changePage = Intent(this, Converter::class.java)
                 startActivity(changePage)
