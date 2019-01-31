@@ -38,15 +38,15 @@ class Converter : AppCompatActivity() {
             editText.text.clear()
             textView.text= ""
 
-            if(flagForValue.equals("toInches")){
+            if(flagForValue.compareTo("toInches")==0){
                 flagForValue = "toCm"
                 editText.hint = "Value In Inches"
-                textViewTitle.text =  cmTitle
+                textViewTitle.text =  inchesTitle
 
             } else {
                 flagForValue = "toInches"
                 editText.hint = "Value In cm"
-                textViewTitle.text = inchesTitle
+                textViewTitle.text = cmTitle
 
             }
         }
