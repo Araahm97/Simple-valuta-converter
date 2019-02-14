@@ -23,10 +23,13 @@ class PictureActivity : AppCompatActivity() {
                 .into(imageView)
 
         val nextButton: Button = findViewById(R.id.next_button)
-        nextButton.setOnClickListener {
-                val changePage = Intent(this, Converter::class.java)
-                startActivity(changePage)
-        }
+    }
+
+
+
+    fun nextAct(v : View) {
+        val list = Intent(this, Converter::class.java)
+        startActivity(list)
     }
 
 
