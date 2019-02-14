@@ -20,6 +20,7 @@
         android:layout_height="50dp"
         android:text="Next Activity"
         android:textColor="#ffffff"
+        android:onClick="nextAct"
         android:background="@drawable/button"
         android:layout_marginBottom="51dp"
         app:layout_constraintBottom_toBottomOf="parent"

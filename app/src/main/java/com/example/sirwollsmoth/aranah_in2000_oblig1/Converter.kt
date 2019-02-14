@@ -3,6 +3,7 @@ package com.example.sirwollsmoth.aranah_in2000_oblig1
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
@@ -11,104 +12,93 @@ import android.widget.Toast
 
 class Converter : AppCompatActivity() {
 
+
+    var cmToInches = true
+    val cmTitle = "CM TO INCHES"
+
+
+    //Get moduels by ID
+    private lateinit var editText: EditText
+    private lateinit var textViewTitle: TextView
+    private lateinit var textView: TextView
+    private lateinit var convertButton: Button
+    private lateinit var nextButton: Button
+    private lateinit var prevButton: Button
+    private lateinit var swapButton: Button
+    private lateinit var output: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_converter)
 
-        var flagForValue= "toInches"
-        val cmTitle= "CM TO INCHES"
-        val inchesTitle= "INCHES TO CM"
-
-
-
-
         //Get moduels by ID
-        val editText: EditText = findViewById(R.id.editText)
-        val textViewTitle: TextView = findViewById(R.id.title)
-        val textView: TextView = findViewById(R.id.textView)
-        val convertButton: Button = findViewById(R.id.convert_button)
-        val nextButton: Button = findViewById(R.id.next_button)
-        val prevButton: Button = findViewById(R.id.prev_button)
-        val swapButton: Button = findViewById(R.id.swap_button)
-        textViewTitle.text = cmTitle
+        editText = findViewById(R.id.editText)
+        textViewTitle = findViewById(R.id.title)
+        textView = findViewById(R.id.textView)
+        convertButton = findViewById(R.id.convert_button)
+        nextButton = findViewById(R.id.next_button)
+        prevButton = findViewById(R.id.prev_button)
+        swapButton = findViewById(R.id.swap_button)
 
+        textViewTitle.text =  cmTitle
 
-        //Add functionality to the swap button
-        swapButton.setOnClickListener {
-            //Hide the keyboard
-            editText.onEditorAction(EditorInfo.IME_ACTION_DONE)
-            editText.text.clear()
-            textView.text= ""
+    }
 
-            if(flagForValue.compareTo("toInches")==0){
-                flagForValue = "toCm"
-                editText.hint = "Value In Inches"
-                textViewTitle.text =  inchesTitle
+    fun swapCurrency(v: View) {
+        //Hide the keyboard
+       editText.onEditorAction(EditorInfo.IME_ACTION_DONE)
+        editText.text.clear()
+        textView.text= ""
 
-            } else {
-                flagForValue = "toInches"
-                editText.hint = "Value In cm"
-                textViewTitle.text = cmTitle
+        if(cmToInches){
+            editText.hint = "Value In Inches"
+            textViewTitle.text =  "INCHES TO CM"
 
-            }
+        } else {
+            editText.hint = "Value In cm"
+            textViewTitle.text = cmTitle
+
         }
 
-        //Add functionality to the converter button
-        convertButton.setOnClickListener {
+        cmToInches = !cmToInches
+    }
 
-            //Hide the keyboard
-            editText.onEditorAction(EditorInfo.IME_ACTION_DONE)
+    fun convert(v: View) {
+        //Hide the keyboard
+        editText.onEditorAction(EditorInfo.IME_ACTION_DONE)
+        val input = editText.text.toString()
+        if(!input.isBlank()) {
 
-            //Get value from editText
-            val input = editText.text.toString()
+            val inputInt  = input.toInt()
 
-            //Check if input is not empty
-            if(input != "") {
+            if (inputInt > 999999) {
+                Toast.makeText(this, "Write a value between 0 - 999 999", Toast.LENGTH_SHORT).show()
+            } else {
 
-                //Convert to int
-                val inputInt = input.toInt()
-
-                //Check if input is correct
-                if (inputInt > 999999 || inputInt < 0) {
-
-                    //Display toast
-                    Toast.makeText(this, "Write a value between 0 - 999 999", Toast.LENGTH_SHORT).show()
+                if(textViewTitle.text.toString() == cmTitle) {
+                    val valueInInch: Double = Math.round((inputInt * 0.39370079) * 100.0) / 100.0
+                    output = valueInInch.toString() + " INCHES"
 
                 } else {
-
-                    //Add "CM" behind the number in editText
-                    /*val feedbackText: String = input + " CM"
-                    editText.setText(feedbackText)*/
-
-                    var output: String = ""
-                    //Do the math and give output
-                    if(flagForValue.equals("toInches")) {
-                        val valueInInch: Double = Math.round((inputInt * 0.39370079) * 100.0) / 100.0
-                        output = valueInInch.toString() + " INCHES"
-
-                    } else {
-                        val valueInCm: Double = Math.round((inputInt * 2.54) * 100.0) / 100.0
-                        output= valueInCm.toString() + " CM"
-                    }
-
-                    textView.text = output
+                    val valueInCm: Double = Math.round((inputInt * 2.54) * 100.0) / 100.0
+                    output= valueInCm.toString() + " CM"
                 }
 
-            } else {
-                Toast.makeText(this, "Write a value", Toast.LENGTH_SHORT).show()
+                textView.text = output
             }
-        }
 
-        //Add functionality to the next button
-        nextButton.setOnClickListener {
-            val list = Intent(this, ListActivity::class.java)
-            startActivity(list)
+        } else {
+            Toast.makeText(this, "Write a value", Toast.LENGTH_SHORT).show()
         }
+    }
 
-        //Add functionality to the prev button
-        prevButton.setOnClickListener {
-            val changePage = Intent(this, PictureActivity::class.java)
-            startActivity(changePage)
-        }
+    fun nextAct(v: View) {
+        val list = Intent(this, ListActivity::class.java)
+        startActivity(list)
+    }
+
+    fun prevAct(v: View) {
+        val changePage = Intent(this, PictureActivity::class.java)
+        startActivity(changePage)
     }
 }

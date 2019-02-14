@@ -74,7 +74,7 @@ class ListActivity : AppCompatActivity() {
             val newElementTitle=titleText.text.toString()
             val newElementURL = urlText.text.toString()
 
-            if(newElementDesc.isNullOrEmpty() || newElementTitle.isNullOrEmpty() || newElementURL.isNullOrEmpty()){
+            if(newElementDesc.isNullOrEmpty() || newElementTitle.isNullOrEmpty()){
                 Toast.makeText(this, "One or more field is empty", Toast.LENGTH_SHORT).show()
             } else {
                 elementList.add(Element(newElementTitle, newElementDesc,newElementURL))
