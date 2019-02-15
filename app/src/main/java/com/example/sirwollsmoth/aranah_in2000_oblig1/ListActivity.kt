@@ -3,15 +3,13 @@ package com.example.sirwollsmoth.aranah_in2000_oblig1
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.Toast
-
 import android.widget.EditText
-
+import com.getbase.floatingactionbutton.FloatingActionButton
 
 
 class ListActivity : AppCompatActivity() {
@@ -41,7 +39,7 @@ class ListActivity : AppCompatActivity() {
         val floatingActionButton = findViewById<View>(R.id.floating_action_button) as FloatingActionButton
 
 
-        floatingActionButton.setOnClickListener({ _ -> openDialog()})
+        floatingActionButton.setOnClickListener{ openDialog()}
 
 
         recyclerView = findViewById<RecyclerView>(R.id.my_recycler_view).apply {
