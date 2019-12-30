@@ -1,2 +1,2 @@
-# IN2000
-BI BOO BOBTY BA BITIT BOO
+A weather App to help users that have conditions which depends on the weather.
+
